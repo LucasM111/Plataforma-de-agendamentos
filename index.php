@@ -48,7 +48,7 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Sobre a Plataforma</a>
+          <a class="nav-link active" aria-current="page" href="pages/sobre.php">Sobre a Plataforma</a>
         </li>
 
       </ul>
