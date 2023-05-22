@@ -52,11 +52,51 @@
         </li>
 
       </ul>
-      
     </div>
 </ul>
   </div>
 </nav>
+
+<br>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card h-100">
+      <img src="imagens/cad.png" class="w-50" alt="Cadastro de Agendamento">
+      <div class="card-body">
+        <h5 class="card-title">Gerar Agendamentos</h5>
+        <p class="card-text">Aqui voce poderá cadastrar um novo agendamento.</p>
+      </div>
+      <button type="button" class="btn btn-info">
+        Cadastrar Agendamento
+      </button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <img src="imagens/cadveiculo.png" class="w-50" alt="Cadastro de Veiculo">
+      <div class="card-body">
+        <h5 class="card-title">Cadastro do Veiculo</h5>
+        <p class="card-text">Aqui voce poderá cadastrar o veiculo que fará a visita</p>
+      </div>
+      <button type="button" class="btn btn-info">
+        Cadastrar Veiculo
+      </button>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <img src="imagens/cadpessoa.png" class="w-50" alt="Cadastro de Motorista">
+      <div class="card-body">
+        <h5 class="card-title">Cadastro de Motorista</h5>
+        <p class="card-text">Faça o cadastro do motorista.</p>
+      </div>
+      <button type="button" class="btn btn-info">
+        Cadastrar Motorista
+      </button>
+    </div>
+  </div>
+</div>
 
 
 
