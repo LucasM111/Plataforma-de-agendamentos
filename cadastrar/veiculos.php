@@ -1,3 +1,8 @@
+<?php
+include "../configs/conexao.php";
+
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,7 +51,7 @@
           <a class="nav-link active" aria-current="page" href="../home.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="pages/sobre.php">Sobre a Plataforma</a>
+          <a class="nav-link active" aria-current="page" href="../pages/sobre.php">Sobre a Plataforma</a>
         </li>
 
       </ul>
@@ -57,21 +62,37 @@
 </header>
 
 
-<h1>Sobre a Plataforma</h1>
+<div class="card">
+    <div class="card-header">
+        <strong>Novos Veiculos</strong>
 
-    <p>Bem-vindo à nossa plataforma! Aqui está um pouco sobre o que ela é:</p>
+        <div class="float-end">
+            <a href="" class="btn btn-info btn-sm">
+                Listas de Veiculos
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <form name="formveiculos" method="post" action="" data-parsley-validate="">
+            <br>
 
-<h2>Objetivo</h2>
-    <p>************************************</p>
+            <!-- Modelo -->
+            <label for="modeloveiculo">Digite o Modelo do Veiculo:</label>
+            <input type="text" name="modeloveiculo" id="modeloveiculo" class="form-control"
+            required data-parsley-required-message="Por favor, preencha este campo"
+            value="">
+            <br>
 
-<h2>Visão</h2>
-    <p>************************************</p>
+            <!-- Placa -->
+            <label for="placaveiculo">Placa do Veiculo</label>
+            <input type="text" name="placaveiculo" id="placaveiculo" class="form-control"
+            required data-parsley-required-message="Por favor, preencha este campo"
+            value="">
+            <br>
 
-<h2>Valores</h2>
-    <ul>
-        <li>************************************</li>
-        <li>************************************</li>
-        <li>************************************</li>
-    </ul>
-
-    <p>************************************</p>
+            <button type="submit" class="btn btn-success">
+                <i class=""></i> Salvar Dados
+            </button>
+        </form>
+    </div>
+</div>

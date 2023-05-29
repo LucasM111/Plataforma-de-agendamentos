@@ -27,17 +27,17 @@
 
 
 </head>
-<body>
+<header>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
 <nav class="navbar bg-body-tertiary">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="home.php">
       <img src="imagens/Ltech.png" alt="Ltech" width="80" height="80" class = "ltech">
     </a>
   </div>
 </nav>
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Agendamentos</a>
+    <a class="navbar-brand" href="home.php">Agendamentos</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -45,7 +45,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="home.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="pages/sobre.php">Sobre a Plataforma</a>
@@ -56,10 +56,10 @@
 </ul>
   </div>
 </nav>
+</header>
 
-<br>
-
-<div class="row row-cols-1 row-cols-md-3 g-4">
+<body>
+<div class="row row-cols-1 row-cols-md-3 g-1">
   <div class="col">
     <div class="card h-100">
       <img src="imagens/cad.png" class="w-50" alt="Cadastro de Agendamento">
@@ -67,9 +67,9 @@
         <h5 class="card-title">Gerar Agendamentos</h5>
         <p class="card-text">Aqui voce poderá cadastrar um novo agendamento.</p>
       </div>
-      <button type="button" class="btn btn-info">
-        Cadastrar Agendamento
-      </button>
+      <a href="cadastrar/agendamentos.php" class="btn btn-info btn-sm" title="Novo registro">
+        Cadastrar Novo Agendamento
+      </a>
     </div>
   </div>
   <div class="col">
@@ -79,9 +79,9 @@
         <h5 class="card-title">Cadastro do Veiculo</h5>
         <p class="card-text">Aqui voce poderá cadastrar o veiculo que fará a visita</p>
       </div>
-      <button type="button" class="btn btn-info">
-        Cadastrar Veiculo
-      </button>
+      <a href="cadastrar/veiculos.php" class="btn btn-info btn-sm" title="Novo registro">
+        Cadastrar Novo Agendamento
+      </a>
     </div>
   </div>
   <div class="col">
@@ -91,9 +91,9 @@
         <h5 class="card-title">Cadastro de Motorista</h5>
         <p class="card-text">Faça o cadastro do motorista.</p>
       </div>
-      <button type="button" class="btn btn-info">
-        Cadastrar Motorista
-      </button>
+      <a href="cadastrar/motorista.php" class="btn btn-info btn-sm" title="Novo registro">
+        Cadastrar Novo Agendamento
+      </a>
     </div>
   </div>
 </div>
