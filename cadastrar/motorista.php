@@ -62,18 +62,44 @@ include "../configs/conexao.php";
 </header>
 
 
+<?php
+  //verificar se o id não está vazio
+  if (!empty($id)) {
+    $sqlMotorista = "select * from motoristas where id = :id limit 1";
+    $consultaMotorista = $pdo->prepare($sqlMotorista);
+    $consultaMotorista->bindParam(":id", $id);
+    $consultaMotorista->execute();
+
+    $dados = $consultaMotorista->fetch(PDO::FETCH_OBJ);
+}
+
+$id = $dados->id ?? NULL;
+$nome = $dados->nome ?? NULL;
+$sobrenome = $dados->sobrenome ?? NULL;
+$veiculo = $dados->veiculo ?? NULL;
+
+?>
+
+
+
+
 <div class="card">
     <div class="card-header">
         <strong>Novos Motoristas</strong>
 
         <div class="float-end">
-            <a href="" class="btn btn-info btn-sm">
-                Listas de Motoristas
+            <a href="../listar/motorista.php" class="btn btn-info btn-sm">
+            <i class="fas fa-search"></i> Listas de Motoristas
             </a>
         </div>
     </div>
     <div class="card-body">
-        <form name="formveiculos" method="post" action="" data-parsley-validate="">
+        <form name="formveiculos" method="post" action="../salvar/motoristas.php" data-parsley-validate="">
+            <br>
+
+            <!-- ID -->
+            <label for="id">ID:</label>
+            <input type="text" name="id" id="id" class="form-control" readonly value="<?=$id?>">
             <br>
 
             <!-- Nome -->
@@ -91,9 +117,28 @@ include "../configs/conexao.php";
             <br>
 
             <!-- Veiculo dele -->
+            <label for = "veiculo">Escolha o Veiculo</label>
+              <select name = "veiculo" id = "veiculo" class = "form-control" required data-parsley-required-message = "Selecione um veiculo">
+                  <option value = "">Selecione</option> 
+                    <?php
+                      $sqlVeiculo = "Select * from veiculos order by modelo";
+                      $consultaVeiculo = $pdo->prepare($sqlVeiculo);
+                      $consultaVeiculo->execute();
+
+                      while ($dadosVeiculo = $consultaVeiculo->fetch(PDO::FETCH_OBJ)){
+                          ?>
+                              <option value = "<?=$dadosVeiculo->modelo?>">
+                              <?=$dadosVeiculo->modelo?>
+                              </option> 
+
+                          <?php
+                      }
+                  ?>
+              </select>
+            <br>
 
             <button type="submit" class="btn btn-success">
-                <i class=""></i> Salvar Dados
+                <i class="fas fa-check"></i> Salvar Dados
             </button>
 
             

@@ -15,6 +15,6 @@
       echo "<p>Erro ao conectar com o a base de dados: {$erro}</p>";
   }
 
-
+  $base = "http://localhost/pwa/plataforma-de-agendamentos/";
 
 ?>

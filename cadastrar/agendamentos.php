@@ -1,5 +1,6 @@
 <?php
 include "../configs/conexao.php";
+include "../configs/functions.php";
 
 ?>
 
@@ -75,6 +76,7 @@ include "../configs/conexao.php";
 $id = $dados->id ?? NULL;
 $nome = $dados->nome ?? NULL;
 $veiculo = $dados->veiculo ?? NULL;
+$motorista = $dados->motorista ?? NULL;
 $data = $dados->data ?? NULL;
 $hora = $dados->hora ?? NULL;
 $motivo = $dados->motivo ?? NULL;
@@ -89,13 +91,13 @@ $produto = $dados->produto ?? NULL;
         <strong>Novos Agendamentos</strong>
 
         <div class="float-end">
-            <a href="" class="btn btn-info btn-sm">
+            <a href="../listar/agendamentos.php" class="btn btn-info btn-sm">
                 Listar Agendamentos
             </a>
         </div>
     </div>
     <div class="card-body">
-        <form name="formagendamentos" method="post" action="../salvar/agendamentos" data-parsley-validate="">
+        <form name="formagendamentos" method="post" action="../salvar/agendamentos.php" data-parsley-validate="">
             <br>
 
             <!-- ID -->
@@ -104,15 +106,15 @@ $produto = $dados->produto ?? NULL;
             <br>
 
             <!-- Nome -->
-            <label for="agendamentos">Digite o nome do visitante:</label>
-            <input type="text" name="agendamentos" id="agendamentos" class="form-control"
+            <label for="nome">Digite o nome do visitante:</label>
+            <input type="text" name="nome" id="nome" class="form-control"
             required data-parsley-required-message="Por favor, preencha este campo"
             value="<?=$nome?>">
             <br>
 
             <!-- Veiculo -->
-            <label for = "veiculo_id">Escolha o Veiculo</label>
-            <select name = "veiculo_id" id = "veiculo_id" class = "form-control" required data-parsley-required-message = "Selecione um veiculo">
+            <label for = "veiculo">Escolha o Veiculo</label>
+            <select name = "veiculo" id = "veiculo" class = "form-control" required data-parsley-required-message = "Selecione um veiculo">
                 <option value = "">Selecione</option> 
                 <?php
                      $sqlVeiculo = "Select * from veiculos order by modelo";
@@ -121,7 +123,7 @@ $produto = $dados->produto ?? NULL;
 
                      while ($dadosVeiculo = $consultaVeiculo->fetch(PDO::FETCH_OBJ)){
                          ?>
-                             <option value = "<?=$dadosVeiculo->id?>">
+                             <option value = "<?=$dadosVeiculo->modelo?>">
                              <?=$dadosVeiculo->modelo?>
                             </option> 
 
@@ -131,16 +133,38 @@ $produto = $dados->produto ?? NULL;
             </select>
             <br>
 
+
+            <!-- Motorista -->
+            <label for = "motorista">Escolha o Motorista</label>
+            <select name = "motorista" id = "motorista" class = "form-control" required data-parsley-required-message = "Selecione um Motorista">
+                <option value = "">Selecione</option> 
+                <?php
+                     $sqlMotorista = "Select * from motoristas order by nome";
+                     $consultaMotorista = $pdo->prepare($sqlMotorista);
+                     $consultaMotorista->execute();
+
+                     while ($dadosMotorista = $consultaMotorista->fetch(PDO::FETCH_OBJ)){
+                         ?>
+                             <option value = "<?=$dadosMotorista->nome?>">
+                             <?=$dadosMotorista->nome?>
+                            </option> 
+
+                        <?php
+                    }
+                ?>
+            </select>
+            <br>
+
             <!-- Data do Agendamento -->
-            <label for="datavisita">Data de agendamento</label>
-            <input type="date" name="datavisita" id="datavisita" class="form-control"
+            <label for="data">Data de agendamento</label>
+            <input type="text" name="data" id="data" class="form-control"
             required data-parsley-required-message="Por favor, preencha este campo"
             value="<?=$data?>">
             <br>
 
             <!-- Hora do Agendamento -->
-            <label for="horavisita">Hora</label>
-            <input type="time" name="horavisita" id="horavisita" class="form-control"
+            <label for="hora">Hora</label>
+            <input type="time" name="hora" id="hora" class="form-control"
             required data-parsley-required-message="Por favor, preencha este campo"
             value="<?=$id?>">
             <br>
@@ -153,8 +177,8 @@ $produto = $dados->produto ?? NULL;
             <br>
 
             <!-- Quantidade de pessoas que vão comparecer ao estabelecimento -->
-            <label for="qvistante">Digite a quantidade de visitantes:</label>
-            <input type="number" name="qvistante" id="qvistante" class="form-control"
+            <label for="n_visitantes">Digite a quantidade de visitantes:</label>
+            <input type="number" name="n_visitantes" id="n_visitantes" class="form-control"
             required data-parsley-required-message="Por favor, preencha este campo"
             value="<?=$n_visitantes?>">
             <br>
@@ -167,7 +191,7 @@ $produto = $dados->produto ?? NULL;
             <br>
 
             <button type="submit" class="btn btn-success">
-                <i class=""></i> Salvar Dados
+                <i class="fas fa-check"></i> Salvar Dados
             </button>
         </form>
     </div>

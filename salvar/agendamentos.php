@@ -1,15 +1,18 @@
 <?php
 
-    require "configs/functions.php";
+    require "../configs/conexao.php";
+    require "../configs/functions.php";
+
     
     if (!$_POST) 
         mensagem("Erro", "Requisição inválida");
 
     //recuperar os dados digitados no formulário
-    //print_r($_POST);
+    print_r($_POST);
     $id = trim($_POST["id"] ?? NULL);
     $nome = trim($_POST["nome"] ?? NULL);
     $veiculo = trim($_POST["veiculo"] ?? NULL);
+    $motorista = trim($_POST["motorista"] ?? NULL);
     $data = trim($_POST["data"] ?? NULL);
     $hora = trim($_POST["hora"] ?? NULL);
     $motivo = trim($_POST["motivo"] ?? NULL);
@@ -21,6 +24,8 @@
         mensagem("Erro","Preencha o nome");
     if (empty($veiculo))
         mensagem("Erro","Preencha o veiculo");
+    if (empty($motorista))
+        mensagem("Erro","Preencha o motorista");
     if (empty($data))
         mensagem("Erro","Preencha a data");
     if (empty($hora))
@@ -32,14 +37,16 @@
     if (empty($produto))
         mensagem("Erro","Preencha o produto");
 
-    
+    $data = formatarData($data);
+
     //verificar se vamos dar um insert ou um update
     if (empty($id)) {
         //insert
-        $sql = "insert into agendamentos values (NULL, :nome, :veiculo, :data, :hora, :motivo, :n_visitantes, :produto)";
+        $sql = "insert into agendamentos values (NULL, :nome, :veiculo, :motorista, :data, :hora, :motivo, :n_visitantes, :produto)";
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
         $consulta->bindParam(":veiculo", $veiculo);
+        $consulta->bindParam(":motorista", $motorista);
         $consulta->bindParam(":data", $data);
         $consulta->bindParam(":hora", $hora);
         $consulta->bindParam(":motivo", $motivo);
@@ -47,10 +54,11 @@
         $consulta->bindParam(":produto", $produto);
     } else {
         //update
-        $sql = "update into agendamentos values (NULL, :nome, :veiculo, :data, :hora, :motivo, :n_visitantes, :produto)";
+        $sql = "update agendamentos set nome = :nome, veiculo = :veiculo, motorista = :motorista, data = :data, hora = :hora, motivo = :motivo, n_visitantes = :n_visitantes, produto = :produto where id = :id limit 1";
         $consulta = $pdo->prepare($sql);
         $consulta->bindParam(":nome", $nome);
         $consulta->bindParam(":veiculo", $veiculo);
+        $consulta->bindParam(":motorista", $motorista);
         $consulta->bindParam(":data", $data);
         $consulta->bindParam(":hora", $hora);
         $consulta->bindParam(":motivo", $motivo);
